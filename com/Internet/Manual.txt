@@ -1,0 +1,48 @@
+//InternetConnectivity
+//adishaswot@gmail.com
+//ashaswot.com.np
+//11th Sept 2011
+
+========================================
+
+Public Variable :
+
+pingTime :> set Server Request time  | deault = 15000 [15Secs]
+pingServer  :>  Server URL for ping | default ='google.com'
+bInternetConnectivity :> variable which stores internet connection information
+
+
+Public Function :
+init() :> initialize the InternetConnectivity Class
+
+
+
+Example :
+To Do : load 'ashaswot.com.np' after internet is connected
+
+
+---
+
+import com.Internet.InternetConnectivity;
+import flash.events.TimerEvent;
+import flash.net.navigateToURL;
+import flash.net.URLRequest;
+
+//Internet Connectivity
+var conn:InternetConnectivity = new InternetConnectivity();
+conn.init();
+
+
+var connCheck:Timer = new Timer(100);
+connCheck.addEventListener(TimerEvent.TIMER, timerTock);
+connCheck.start();
+
+function timerTock(e:TimerEvent)
+{
+//if internet is connected
+	if(conn.bInternetConnectivity)
+	{
+		connCheck.stop();
+		navigateToURL(new URLRequest('http://ashaswot.com.np'));
+	}
+}
